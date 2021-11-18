@@ -1,4 +1,6 @@
 defmodule GammaExcv do
+  import Nx.Defn
+
   @moduledoc """
   Documentation for `GammaExcv`.
   """
@@ -28,6 +30,14 @@ defmodule GammaExcv do
 
   @spec gamma_pipelined_def(Nx.Tensor.t(), number) :: Nx.Tensor.t()
   def gamma_pipelined_def(image, gamma) do
+    image
+    |> Nx.divide(255)
+    |> Nx.power(Nx.divide(1, gamma))
+    |> Nx.multiply(255)
+    |> Nx.as_type({:u, 8})
+  end
+
+  defn gamma_pipelined_defn(image, gamma) do
     image
     |> Nx.divide(255)
     |> Nx.power(Nx.divide(1, gamma))
