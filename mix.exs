@@ -21,7 +21,8 @@ defmodule GammaExcv.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:excv, "~> 0.1.0-dev", github: "zeam-vm/excv", branch: "main"}
+      {:excv, "~> 0.1.0-dev", github: "zeam-vm/excv", branch: "main"},
+      {:benchee, "~> 1.0", only: :dev}
     ]
   end
 end
