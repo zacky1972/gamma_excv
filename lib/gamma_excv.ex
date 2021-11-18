@@ -12,4 +12,17 @@ defmodule GammaExcv do
     )
     |> Nx.as_type({:u, 8})
   end
+
+  @spec gamma_map_pipelined(Nx.Tensor.t(), number) :: Nx.Tensor.t()
+  def gamma_map_pipelined(image, gamma) do
+    image
+    |> Nx.map(
+      [type: {:f, 32}],
+      &(&1
+        |> Nx.divide(255)
+        |> Nx.power(Nx.divide(1, gamma))
+        |> Nx.multiply(255))
+    )
+    |> Nx.as_type({:u, 8})
+  end
 end

@@ -5,7 +5,8 @@ img
 |> Excv.imwrite("/tmp/Pelemay_gamma.png")
 
 benches = %{
-  "gamma_map (def)" => fn -> GammaExcv.gamma_map(img, 0.5) end
+  "gamma_map (def)" => fn -> GammaExcv.gamma_map(img, 0.5) end,
+  "gamma_map_pipelined (def)" => fn -> GammaExcv.gamma_map_pipelined(img, 0.5) end
 }
 
 Benchee.run(
