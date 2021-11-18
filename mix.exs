@@ -22,7 +22,8 @@ defmodule GammaExcv.MixProject do
   defp deps do
     [
       {:excv, "~> 0.1.0-dev", github: "zeam-vm/excv", branch: "main"},
-      {:benchee, "~> 1.0", only: :dev}
+      {:benchee, "~> 1.0", only: :dev},
+      {:ok, "~> 0.2.0"}
     ]
   end
 end
