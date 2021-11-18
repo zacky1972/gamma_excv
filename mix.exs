@@ -23,7 +23,9 @@ defmodule GammaExcv.MixProject do
     [
       {:excv, "~> 0.1.0-dev", github: "zeam-vm/excv", branch: "main"},
       {:benchee, "~> 1.0", only: :dev},
-      {:ok, "~> 0.2.0"}
+      {:ok, "~> 0.2.0"},
+      {:exla, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "exla"},
+      {:nx, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "nx", override: true}
     ]
   end
 end
