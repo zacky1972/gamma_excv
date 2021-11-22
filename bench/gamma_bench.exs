@@ -38,12 +38,14 @@ benches =
     Map.merge(benches, %{
       "gamma_pipelined_defn (EXLA gpu) gamma on host" => fn -> GammaExla.cuda(dimg, 0.5) end,
       "gamma_pipelined_defn (EXLA gpu) gamma on gpu" => fn -> GammaExla.cuda(dimg, dgamma) end,
-      "gamma_pipelined_defn (EXLA gpu keep) gamma on host" => fn ->
-        GammaExla.cuda_keep(dimg, 0.5)
-      end,
-      "gamma_pipelined_defn (EXLA gpu keep) gamma on gpu" => fn ->
-        GammaExla.cuda_keep(dimg, dgamma)
-      end
+      "gamma_pipelined_defn (EXLA gpu keep) gamma on host" =>
+        {fn ->
+           GammaExla.cuda_keep(dimg, 0.5)
+         end, after_each: &Nx.backend_deallocate/1},
+      "gamma_pipelined_defn (EXLA gpu keep) gamma on gpu" =>
+        {fn ->
+           GammaExla.cuda_keep(dimg, dgamma)
+         end, after_each: &Nx.backend_deallocate/1}
     })
   else
     benches
